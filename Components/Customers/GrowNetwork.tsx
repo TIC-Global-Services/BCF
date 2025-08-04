@@ -65,7 +65,7 @@ const GrowNetwork = () => {
                 together to bring your vision to life — with strength,
                 precision, and trust.
               </motion.p>
-              <button className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#F1EFEC] text-[#123458] rounded-full hover:bg-opacity-90 transition-colors duration-200">
+              <button className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#E3DFD9] text-[#123458] rounded-full hover:bg-opacity-90 transition-colors duration-200">
                 Contact for More
               </button>
             </div>

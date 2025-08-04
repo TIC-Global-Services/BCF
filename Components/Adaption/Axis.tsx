@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { AxisImage } from "../Reusable/Icons";
+import Link from "next/link";
 
 const Axis = () => {
   return (
@@ -9,7 +10,7 @@ const Axis = () => {
         <div className="flex flex-col items-start md:space-y-7 space-y-4  ">
           <div>
             <h1 className="text-[#1F1F1F] md:text-[54px] text-[24px] md:leading-[64px] leading-[30px] ">
-              5th Axis Machining
+              5 Axis Machining
             </h1>
             <p className="text-[#3F4348] md:text-[16px] text-[12px] md:leading-[22px] leading-[18px]">
               Unmatched Precision for Complex Components
@@ -26,11 +27,11 @@ const Axis = () => {
           </div>
 
           <div>
-            <button className="bg-[#F1EFEC] text-[#123458] md:text-[18px] text-[12px] px-4 py-2 rounded-full ">
+            <Link href='/about' className="bg-[#E3DFD9] text-[#123458] md:text-[18px] text-[12px] px-5 py-3 rounded-full hover:bg-[#e8e5e2] transition-colors duration-200 ">
               More About Us
-            </button>
+            </Link>
           </div>
-        </div>
+        </div> 
 
         <div className="w-full md:h-[546px] h-[233px]">
           <Image

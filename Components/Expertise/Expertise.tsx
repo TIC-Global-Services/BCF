@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { motion, useInView, Variants } from 'framer-motion';
-import { Icon1, Icon2, Icon3, Icon4, Icon5 } from '../Reusable/Icons';
+import { Icon1, Icon2, Icon3, Icon4, Icon5, IconWhite1, IconWhite2, IconWhite3, IconWhite4, IconWhite5 } from '../Reusable/Icons';
 
 // Types
 interface ExpertiseItem {
   title: string;
   description: string;
   icon?: StaticImageData | string;
+  iconWhite?: StaticImageData | string;
 }
 
 interface CardProps {
@@ -27,26 +28,31 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
   },
   {
     icon: Icon1, 
+    iconWhite: IconWhite1,
     title: 'Iron Casting & Fabrication', 
     description: "There are many variati of passages of engineer's available have suffered."
   },
   {
     icon: Icon2, 
+    iconWhite: IconWhite2,
     title: 'Custom Product Development', 
     description: "There are many variati of passages of engineer's available have suffered."
   },
   {
     icon: Icon3, 
+    iconWhite: IconWhite3,
     title: 'Tooling & Manufacturing', 
     description: "There are many variati of passages of engineer's available have suffered."
   },
   {
     icon: Icon4, 
+    iconWhite: IconWhite4,
     title: 'Quality Control & Testing', 
     description: "There are many variati of passages of engineer's available have suffered."
   },
   {
     icon: Icon5, 
+    iconWhite: IconWhite5,
     title: 'End to End Manufacturing', 
     description: "There are many variati of passages of engineer's available have suffered."
   }
@@ -103,7 +109,6 @@ const ANIMATIONS = {
   })
 } as const;
 
-
 // Utility functions
 const getCardClasses = (index: number, totalItems: number): string => {
   const baseClasses = "md:px-8 md:py-8 px-2 py-4 rounded-[20px] md:h-[352px] flex flex-col transition-colors duration-300";
@@ -113,9 +118,10 @@ const getCardClasses = (index: number, totalItems: number): string => {
   return `${baseClasses} justify-between group border border-[#D9D9D9] hover:bg-black`;
 };
 
-//  Card Component
+// Card Component
 const Card: React.FC<CardProps> = React.memo(({ item, isInView, index, totalItems }) => {
   const cardClasses = useMemo(() => getCardClasses(index, totalItems), [index, totalItems]);
+  const [isHovered, setIsHovered] = useState(false);
   
   const isHeaderCard = index === 0;
   
@@ -124,6 +130,8 @@ const Card: React.FC<CardProps> = React.memo(({ item, isInView, index, totalItem
       variants={ANIMATIONS.card}
       whileHover={ANIMATIONS.cardHover}
       className={cardClasses}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {isHeaderCard ? (
         <>
@@ -148,9 +156,9 @@ const Card: React.FC<CardProps> = React.memo(({ item, isInView, index, totalItem
             className="md:mb-6 mb-3 min-w-[121px]"
             whileHover={ANIMATIONS.iconHover}
           >
-            {item.icon && (
+            {item.icon && item.iconWhite && (
               <Image
-                src={item.icon}
+                src={isHovered ? item.iconWhite : item.icon}
                 alt={item.title}
                 className="md:w-[40px] md:h-[40px] w-[20px] h-[20px]"
                 width={40}
@@ -158,7 +166,7 @@ const Card: React.FC<CardProps> = React.memo(({ item, isInView, index, totalItem
               />
             )}
           </motion.div>
-          <div className='md:w-full  '>
+          <div className='md:w-full'>
             <motion.h3 
               className="md:text-[20px] text-[16px] font-semibold text-black group-hover:text-white md:mb-3"
               {...ANIMATIONS.cardContent()}
@@ -190,7 +198,7 @@ const MobileHeader: React.FC<{ isHeaderInView: boolean }> = React.memo(({ isHead
     animate={isHeaderInView ? ANIMATIONS.header.animate : ANIMATIONS.header.initial}
     transition={ANIMATIONS.header.transition}
   >
-    <h1 className="text-[24px]  font-heading text-[#1F1E1D] mb-2">
+    <h1 className="text-[24px] font-heading text-[#1F1E1D] mb-2">
       Areas of Expertise
     </h1>
     <p className="text-[16px] text-[#3F4348]">
@@ -210,7 +218,7 @@ const Expertise: React.FC = () => {
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-50px" });
 
   return (
-    <div className="max-w-7xl mx-auto xl:px-0 px-[30px]  md:-mt-0 -mt-50">
+    <div className="max-w-7xl mx-auto xl:px-0 px-[30px] md:-mt-0 -mt-50">
       <div ref={headerRef}>
         <MobileHeader isHeaderInView={isHeaderInView} />
       </div>

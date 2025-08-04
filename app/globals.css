@@ -2,7 +2,7 @@
 
 :root {
   --background: #171717;
-  --foreground: #F9F8F7;
+  --foreground: #EdEbE8;
 }
 
 @theme inline {
@@ -14,8 +14,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #F9F8F7;
+    --background: #EdEbE8;
     --foreground: #0a0a0a;
+    
   }
 }
 
@@ -70,4 +71,9 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   overflow-x: hidden;
 
+}
+
+
+.fadeGradient {
+  background: linear-gradient(90deg, #F9F8F7 0%, rgba(249, 248, 247, 0) 50%, #F9F8F7 100%);
 }

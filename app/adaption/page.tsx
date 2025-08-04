@@ -1,5 +1,7 @@
 import Axis from "@/Components/Adaption/Axis";
+import CastingGrades from "@/Components/Adaption/CastingGrades";
 import Innovation from "@/Components/Adaption/Innovation";
+import ProductLine from "@/Components/Adaption/ProductLine";
 import ContentSectionComponent from "@/Components/Reusable/ContentSectionComponent";
 import React from "react";
 
@@ -17,9 +19,12 @@ const page = () => {
         />
       </div>
       <Axis />
-      <Innovation />
-      
-      
+      <div className="pt-30">
+      <Innovation />  
+
+      </div>
+      <ProductLine />
+      <CastingGrades />  
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Clientele from "@/Components/Customers/Clientele";
 import CustomerBento from "@/Components/Customers/CustomerBento";
 import GrowNetwork from "@/Components/Customers/GrowNetwork";
 import ContentSectionComponent from "@/Components/Reusable/ContentSectionComponent";
@@ -17,6 +18,7 @@ const page = () => {
         />
       </div>
 <CustomerBento />
+<Clientele />
       <GrowNetwork />
 
     </div>

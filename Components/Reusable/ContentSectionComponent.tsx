@@ -10,6 +10,7 @@ interface ContentSectionProps {
   linkText?: string;
   linkHref?: string;
   maxWidth?: string;
+  letterSpacing?:string;
 }
 
 const ContentSectionComponent: React.FC<ContentSectionProps> = ({ 
@@ -18,7 +19,8 @@ const ContentSectionComponent: React.FC<ContentSectionProps> = ({
   paragraph, 
   linkText,
   linkHref,
-  maxWidth = "720px" 
+  maxWidth = "720px",
+  letterSpacing = '0px'
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: '-100px' });
@@ -35,11 +37,11 @@ const ContentSectionComponent: React.FC<ContentSectionProps> = ({
       }}
       className="flex flex-col justify-center items-center  mx-auto md:px-0 px-5" style={{ maxWidth }}
     >
-      <h1 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-heading md:leading-[84px] leading-[40px] text-center md:mb-1 mb-2">
+      <h1 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-heading md:leading-[84px] leading-[40px] text-center md:mb-0 mb-2">
         {heading}
       </h1>
       {subheading && (
-        <h2 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-bodoni font-regular md:leading-[84px] text-center leading-[40px] md:mb-1 mb-2">
+        <h2 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-bodoni font-regular md:leading-[84px] text-center leading-[40px] md:mb-1 mb-2" style={{letterSpacing}}>
           {subheading}
         </h2>
       )}
@@ -51,7 +53,7 @@ const ContentSectionComponent: React.FC<ContentSectionProps> = ({
       {linkText && linkHref && (
         <Link
           href={linkHref}
-          className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#F1EFEC] text-[#123458] rounded-full hover:bg-opacity-90 transition-colors duration-200"
+          className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#E3DFD9] text-[#123458] rounded-full hover:bg-[#e8e5e2] transition-colors duration-200"
         >
           {linkText}
         </Link>

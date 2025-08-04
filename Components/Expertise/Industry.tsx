@@ -22,17 +22,17 @@ const Industry = () => {
     {
       title: "Construction & Infrastructure",
       description:
-        "We manufacture high-strength iron components for vehicles and heavy transport systems, ensuring durability and performance under tough conditions.",
+        "Robust solutions for building the foundations of tomorrow.We support large-scale infrastructure projects with reliable components and engineering.",
     },
     {
       title: "Energy & Utilities",
       description:
-        "We manufacture high-strength iron components for vehicles and heavy transport systems, ensuring durability and performance under tough conditions.",
+        "Empowering energy and utility sectors with precision-built systems.Our products ensure performance and safety in critical power and utility applications.",
     },
     {
       title: "Equipment Manufacturing",
       description:
-        "We manufacture high-strength iron components for vehicles and heavy transport systems, ensuring durability and performance under tough conditions.",
+        "Custom-engineered equipment tailored for diverse industrial needs. From heavy machinery parts to fine components, we deliver excellence in every piece.",
     },
   ];
 
@@ -106,55 +106,142 @@ const Industry = () => {
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
                   }
-                  className={`bg-[#EDEDEF] rounded-xl cursor-pointer transition-all duration-500 ${
-                    activeIndex === index
-                      ? "bg-black px-2"
-                      : "bg-[#EDEDEF] py-5 px-2"
-                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="cursor-pointer rounded-xl overflow-hidden"
                   onClick={() => handleItemClick(index)}
                 >
-                  <div className="flex items-center md:p-4 p-3 space-x-3">
-                    <h1
-                      className={`md:text-[20px] font-medium ${
-                        activeIndex === index
-                          ? "text-[#DCDCDA]"
-                          : "text-[#000000]"
-                      }`}
+                  <motion.div
+                    layout
+                    animate={{
+                      backgroundColor: activeIndex === index ? "#000000" : "#EDEDEF",
+                      paddingLeft: "8px",
+                      paddingRight: "8px",
+                      paddingTop: activeIndex === index ? "8px" : "20px",
+                      paddingBottom: activeIndex === index ? "0px" : "20px",
+                    }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: {
+                        duration: 0.4,
+                        ease: [0.4, 0, 0.2, 1],
+                      }
+                    }}
+                    className="rounded-xl"
+                  >
+                    <motion.div 
+                      layout
+                      className="flex items-center md:p-4 p-3 space-x-3"
                     >
-                      {content.title}
-                    </h1>
-                  </div>
-
-                  <AnimatePresence initial={false}>
-                    {activeIndex === index && (
-                      <motion.div
-                        key={`content-${index}`}
-                        className="overflow-hidden"
+                      <motion.h1
+                        animate={{
+                          color: activeIndex === index ? "#DCDCDA" : "#000000",
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          ease: "easeOut",
+                        }}
+                        className="md:text-[20px] font-medium"
                       >
-                        <p className="text-[16px] text-[#DCDCDA] p-3 md:p-4 pt-0 sm:pt-0">
-                          {content.description}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {content.title}
+                      </motion.h1>
+                    </motion.div>
+
+                    <AnimatePresence mode="wait">
+                      {activeIndex === index && (
+                        <motion.div
+                          key={`content-${index}`}
+                          initial={{ 
+                            height: 0, 
+                            opacity: 0,
+                            y: -10
+                          }}
+                          animate={{ 
+                            height: "auto", 
+                            opacity: 1,
+                            y: 0
+                          }}
+                          exit={{ 
+                            height: 0, 
+                            opacity: 0,
+                            y: -10
+                          }}
+                          transition={{
+                            duration: 0.4,
+                            ease: [0.4, 0, 0.2, 1],
+                            opacity: {
+                              duration: 0.25,
+                              ease: "easeOut"
+                            }
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <motion.p 
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: 0.1,
+                              ease: "easeOut"
+                            }}
+                            className="text-[16px] text-[#DCDCDA] p-3 md:p-4 pt-0 sm:pt-0"
+                          >
+                            {content.description}
+                          </motion.p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
                 </motion.div>
 
                 {/* Mobile Image - Shows below active accordion item */}
-                <AnimatePresence initial={false}>
+                <AnimatePresence mode="wait">
                   {activeIndex === index && (
                     <motion.div
                       key={`image-${index}`}
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      initial={{ 
+                        opacity: 0, 
+                        height: 0,
+                        y: -20
+                      }}
+                      animate={{ 
+                        opacity: 1, 
+                        height: "auto",
+                        y: 0
+                      }}
+                      exit={{ 
+                        opacity: 0, 
+                        height: 0,
+                        y: -20
+                      }}
+                      transition={{ 
+                        duration: 0.5, 
+                        ease: [0.4, 0, 0.2, 1],
+                        opacity: {
+                          duration: 0.3,
+                          ease: "easeOut"
+                        }
+                      }}
                       className="lg:hidden mt-4 overflow-hidden"
                     >
-                      <Image
-                        src={IndustryImage}
-                        alt="Industry applications"
-                        className="w-full rounded-[20px] h-[300px] object-cover"
-                      />
+                      <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.95, opacity: 0 }}
+                        transition={{
+                          duration: 0.4,
+                          delay: 0.1,
+                          ease: "easeOut"
+                        }}
+                      >
+                        <Image
+                          src={IndustryImage}
+                          alt="Industry applications"
+                          className="w-full rounded-[20px] h-[300px] object-cover"
+                        />
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -9,18 +9,18 @@ const HaveAQuery = () => {
     {
       title: "Call Center",
       icon: Phone,
-      desc: "+123-456-7890",
+      desc: "+919790939890",
     },
     {
       title: "Our Company Address",
       icon: Location,
-      desc: "South Tangerang, Indonesia",
+      desc: "09 Siruthondar Street Manavalanagar Tiruvallur - 602002",
     },
 
     {
       title: "E-mail Address",
       icon: Mail,
-      desc: "your@Mail.com",
+      desc: "castfactory2021@gmail.com",
     },
   ];
 
@@ -102,9 +102,9 @@ const HaveAQuery = () => {
               shortly.
             </p>
           </div>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div className="flex flex-col md:flex-row justify-between md:items-center ">
             {contactDetails.map((detail, index) => (
-              <div key={index} className="flex items-center gap-4">
+              <div key={index} className="flex items-center md:gap-1 gap-3">
                 <div className="bg-[#F1EFEC] rounded-full p-3 inline-flex items-center justify-center">
                   <detail.icon className="w-6 h-6 text-[#1F1F1F]" />
                 </div>

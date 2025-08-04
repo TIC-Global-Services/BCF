@@ -64,7 +64,7 @@ const MediaKit = () => {
                 We frequently put out brand communications, featuring inspiring
                 stories that define our journey. Explore them in our media kit.
               </motion.p>
-              <button className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#F1EFEC] text-[#123458] rounded-full hover:bg-opacity-90 transition-colors duration-200">
+              <button className="mt-6 px-6 py-3 md:text-[18px] text-[12px] bg-[#E3DFD9] text-[#123458] rounded-full hover:bg-opacity-90 transition-colors duration-200">
                 Download Here
               </button>
             </div>

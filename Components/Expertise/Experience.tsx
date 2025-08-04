@@ -3,6 +3,7 @@ import React, {  useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from 'framer-motion';
 import { LeftWall, RightWall } from "../Reusable/Icons";
+import Link from "next/link";
 
 const Experience = () => {
   const ref = useRef(null);
@@ -32,12 +33,12 @@ const Experience = () => {
           venture with a clear goal — to deliver high-quality, reliable
           solutions for India's growing industries.
         </p>
-        <button
-          type="button"
-          className="bg-[#F1EFEC] md:text-[18px] text-[12px] text-[#123458] md:px-6 px-4 md:py-3 py-2 rounded-[63px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#123458] transition cursor-pointer hover:scale-105 "
+        <Link 
+          href='/'
+          className="bg-[#E3DFD9] md:text-[18px] text-[12px] text-[#123458] md:px-6 px-4 md:py-3 py-2 rounded-[63px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#123458] cursor-pointer hover:bg-[#e8e5e2] transition-colors duration-200 "
         >
           Explore Our Products
-        </button>
+        </Link>
       </motion.div>
 
       <motion.div
@@ -49,9 +50,9 @@ const Experience = () => {
           ease: "easeOut",
           delay: 0.4
         }}
-        className="absolute left-0"
+        className="absolute md:-left-16 -left-8"
       >
-        <Image src={LeftWall} alt="" className="w-[40vw]" />
+        <Image src={LeftWall} alt="" className="w-[50vw]" />
       </motion.div>
 
       <motion.div
@@ -63,9 +64,9 @@ const Experience = () => {
           ease: "easeOut",
           delay: 0.4
         }}
-        className="absolute right-0"
+        className="absolute md:-right-16 -right-8"
       >
-        <Image src={RightWall} alt="" className="w-[40vw]" />
+        <Image src={RightWall} alt="" className="w-[50vw]" />
       </motion.div>
     </div>
   );
