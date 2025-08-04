@@ -17,10 +17,9 @@ const page = () => {
           maxWidth="1048px"
         />
       </div>
-<CustomerBento />
-<Clientele />
+      <CustomerBento />
+      <Clientele />
       <GrowNetwork />
-
     </div>
   );
 };

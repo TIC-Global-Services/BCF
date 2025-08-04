@@ -69,7 +69,7 @@ const Industry = () => {
         }}
         className="flex flex-col lg:flex-row justify-center items-stretch gap-0 lg:gap-6 max-w-7xl mx-auto md:mt-15 mt-5"
       >
-        {/* Image Container - 60% width - Only visible on desktop */}
+        {/* Image Container Only visible on desktop */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}

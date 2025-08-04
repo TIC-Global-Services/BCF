@@ -27,11 +27,14 @@ const Axis = () => {
           </div>
 
           <div>
-            <Link href='/about' className="bg-[#E3DFD9] text-[#123458] md:text-[18px] text-[12px] px-5 py-3 rounded-full hover:bg-[#e8e5e2] transition-colors duration-200 ">
+            <Link
+              href="/about"
+              className="bg-[#E3DFD9] text-[#123458] md:text-[18px] text-[12px] px-5 py-3 rounded-full hover:bg-[#e8e5e2] transition-colors duration-200 "
+            >
               More About Us
             </Link>
           </div>
-        </div> 
+        </div>
 
         <div className="w-full md:h-[546px] h-[233px]">
           <Image

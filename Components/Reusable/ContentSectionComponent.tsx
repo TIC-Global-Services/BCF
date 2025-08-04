@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import Link from 'next/link';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 
 interface ContentSectionProps {
   heading: string;
@@ -10,38 +10,44 @@ interface ContentSectionProps {
   linkText?: string;
   linkHref?: string;
   maxWidth?: string;
-  letterSpacing?:string;
+  letterSpacing?: string;
 }
 
-const ContentSectionComponent: React.FC<ContentSectionProps> = ({ 
-  heading, 
-  subheading, 
-  paragraph, 
+const ContentSectionComponent: React.FC<ContentSectionProps> = ({
+  heading,
+  subheading,
+  paragraph,
   linkText,
   linkHref,
   maxWidth = "720px",
-  letterSpacing = '0px'
+  letterSpacing = "0px",
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: '-100px' });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50, x: 0 }}
-      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 50, x: 0 }}
-      transition={{ 
-        duration: 0.8, 
+      animate={
+        isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 50, x: 0 }
+      }
+      transition={{
+        duration: 0.8,
         ease: "easeOut",
-        delay: 0.2
+        delay: 0.2,
       }}
-      className="flex flex-col justify-center items-center  mx-auto md:px-0 px-5" style={{ maxWidth }}
+      className="flex flex-col justify-center items-center  mx-auto md:px-0 px-5"
+      style={{ maxWidth }}
     >
       <h1 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-heading md:leading-[84px] leading-[40px] text-center md:mb-0 mb-2">
         {heading}
       </h1>
       {subheading && (
-        <h2 className="text-[#1F1E1D] md:text-[64px] text-[32px] font-bodoni font-regular md:leading-[84px] text-center leading-[40px] md:mb-1 mb-2" style={{letterSpacing}}>
+        <h2
+          className="text-[#1F1E1D] md:text-[64px] text-[32px] font-bodoni font-regular md:leading-[84px] text-center leading-[40px] md:mb-1 mb-2"
+          style={{ letterSpacing }}
+        >
           {subheading}
         </h2>
       )}

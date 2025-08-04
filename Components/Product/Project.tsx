@@ -18,7 +18,7 @@ const Project = () => {
         className="relative min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[422px] max-w-7xl mx-auto bg-black rounded-[32px] overflow-hidden"
         ref={ref}
       >
-        {/* Background dots - positioned better for all screens */}
+        {/* Background dots] */}
         <div className="absolute md:top-4 left-1/2 transform -translate-x-1/2 w-full max-w-sm sm:max-w-md md:max-w-[586px]">
           <div className="relative w-full h-auto">
             <Image
@@ -42,7 +42,7 @@ const Project = () => {
           }}
         >
           <div className="text-center max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto">
-            {/* Main heading with better responsive typography */}
+            {/* Main heading*/}
             <motion.h1
               className="text-white font-heading mb-3 sm:mb-4 md:mb-6
                          text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[54px]
@@ -58,7 +58,7 @@ const Project = () => {
               Join Our Growing Customer Network
             </motion.h1>
 
-            {/* Description with improved readability */}
+            {/* Description */}
             <motion.p
               className="text-[#E9E6E6] mb-6 sm:mb-8
                          text-sm sm:text-base md:text-lg lg:text-xl xl:text-[21px]
@@ -77,7 +77,7 @@ const Project = () => {
               trust.
             </motion.p>
 
-            {/* CTA button with better responsive sizing */}
+            {/* CTA button*/}
             <motion.button
               className="bg-[#E3DFD9] text-[#123458] rounded-full font-medium
                          px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5

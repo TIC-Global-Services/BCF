@@ -30,7 +30,7 @@ const Footer = () => {
 
   return (
     <footer className="md:h-[381px] flex md:flex-row flex-col justify-between items-start xl:max-w-7xl xl:px-0 lg:px-[30px] px-[30px] md:py-0 py-5 mx-auto mt-20">
-      {/* Main Content - Order 2 on mobile */}
+
       <div className="order-3 md:order-1">
         <h1 className="text-[#18171A] font-heading xl:text-[120px] lg:text-[110px] md:text-[70px] text-[54px] xl:leading-[125px] lg:leading-[90px] md:leading-[70px] leading-[50px] xl:max-w-3xl lg:max-w-3xl md:max-w-md max-w-md md:mb-9 mb-5 md:mt-0 mt-2">
           BHUMA CAST FACTORY
@@ -56,7 +56,6 @@ const Footer = () => {
         </div>
       </div>
 
-
       <div className="flex flex-col text-[#121215] order-1 md:order-2 mb-5 md:mb-0">
         <h1 className="text-[18px] font-semibold mb-2">Quick Links</h1>
         <div className="flex flex-col">
@@ -66,7 +65,10 @@ const Footer = () => {
               className="text-[16px] font-regular leading-[43px]"
               whileHover={{ x: 5 }}
             >
-              <Link href={item.link} className="hover:text-[#000000] transition-colors">
+              <Link
+                href={item.link}
+                className="hover:text-[#000000] transition-colors"
+              >
                 {item.name}
               </Link>
             </motion.div>
@@ -83,7 +85,10 @@ const Footer = () => {
               className="text-[16px] font-regular leading-[43px]"
               whileHover={{ x: 5 }}
             >
-              <Link href={item.link} className="hover:text-[#000000] transition-colors">
+              <Link
+                href={item.link}
+                className="hover:text-[#000000] transition-colors"
+              >
                 {item.name}
               </Link>
             </motion.div>

@@ -15,16 +15,14 @@ const page = () => {
           paragraph="At Bhuma Cast Factory, we embrace innovation to stay ahead of industry demands. Our commitment to technological advancement and process improvement allows us to deliver better accuracy, faster turnaround, and higher quality — all under one roof."
           linkHref="/contact"
           linkText="Contact for More"
-
         />
       </div>
       <Axis />
       <div className="pt-30">
-      <Innovation />  
-
+        <Innovation />
       </div>
       <ProductLine />
-      <CastingGrades />  
+      <CastingGrades />
     </div>
   );
 };

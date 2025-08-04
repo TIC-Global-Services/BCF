@@ -1,24 +1,29 @@
 "use client";
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView } from "framer-motion";
 import { LeftWall, RightWall } from "../Reusable/Icons";
 import Link from "next/link";
 
 const Experience = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: '-100px' });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
-    <div ref={ref} className="relative flex flex-row justify-between items-center md:h-[647px] h-[550px] mt-30 mb-30">
+    <div
+      ref={ref}
+      className="relative flex flex-row justify-between items-center md:h-[647px] h-[550px] mt-30 mb-30"
+    >
       <motion.div
         key="text-container"
         initial={{ opacity: 0, y: 50, x: 0 }}
-        animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 50, x: 0 }}
-        transition={{ 
-          duration: 0.8, 
+        animate={
+          isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 50, x: 0 }
+        }
+        transition={{
+          duration: 0.8,
           ease: "easeOut",
-          delay: 0.2
+          delay: 0.2,
         }}
         className="absolute top-30 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center flex flex-col items-center justify-center"
       >
@@ -33,8 +38,8 @@ const Experience = () => {
           venture with a clear goal — to deliver high-quality, reliable
           solutions for India's growing industries.
         </p>
-        <Link 
-          href='/'
+        <Link
+          href="/"
           className="bg-[#E3DFD9] md:text-[18px] text-[12px] text-[#123458] md:px-6 px-4 md:py-3 py-2 rounded-[63px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#123458] cursor-pointer hover:bg-[#e8e5e2] transition-colors duration-200 "
         >
           Explore Our Products
@@ -45,10 +50,10 @@ const Experience = () => {
         key="left-wall"
         initial={{ opacity: 0, x: -100 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-        transition={{ 
-          duration: 0.8, 
+        transition={{
+          duration: 0.8,
           ease: "easeOut",
-          delay: 0.4
+          delay: 0.4,
         }}
         className="absolute md:-left-16 -left-8"
       >
@@ -59,10 +64,10 @@ const Experience = () => {
         key="right-wall"
         initial={{ opacity: 0, x: 100 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
-        transition={{ 
-          duration: 0.8, 
+        transition={{
+          duration: 0.8,
           ease: "easeOut",
-          delay: 0.4
+          delay: 0.4,
         }}
         className="absolute md:-right-16 -right-8"
       >

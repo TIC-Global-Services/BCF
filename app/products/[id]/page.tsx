@@ -34,7 +34,6 @@ const ProductDetail: React.FC = () => {
   const router = useRouter();
   const productId = parseInt(params.id as string);
 
-  // State for current content and active index
   const [currentContent, setCurrentContent] = useState({
     title: "",
     desc: "",
@@ -42,22 +41,18 @@ const ProductDetail: React.FC = () => {
   });
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Refs for GSAP animation
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
-  // Ref to track last active index to prevent unnecessary updates
   const lastActiveIndexRef = useRef(0);
 
-  // Find the product by ID
   const product = products.find((p) => p.id === productId) as
     | Product
     | undefined;
 
-  // Initialize current content
   useEffect(() => {
     if (product && product.description.length > 0) {
       const firstDesc = product.description[0];
@@ -281,65 +276,65 @@ const ProductDetail: React.FC = () => {
         />
       </div>
 
-   <div 
-  ref={containerRef} 
-  className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" 
-  style={{ height: "100vh" }}
->
-  <div className="h-full flex flex-col lg:flex-row items-center justify-center">
-    {/* Title Section - Left */}
-    <div className="flex-1 space-y-4 flex flex-col justify-start items-start pb-30">
-      <h2
-        ref={titleRef}
-        className="text-[44px] leading-[57px] font-heading text-gray-900 capitalize "
-        style={{
-          position: "relative",
-          willChange: "transform, opacity",
-        }}
-      >
-        {currentContent.title}
-      </h2>
-    </div>
-    
-    {/* Image Section - Middle */}
-    <div className="flex-1 w-full lg:w-auto flex justify-center">
       <div
-        ref={imageRef}
-        className="relative h-64 sm:h-72 lg:h-80 xl:h-96 w-full max-w-sm lg:max-w-md overflow-hidden rounded-lg"
-        style={{ willChange: "transform, opacity" }}
+        ref={containerRef}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+        style={{ height: "100vh" }}
       >
-        <Image
-          key={`${currentContent.image}-${activeIndex}`}
-          src={currentContent.image}
-          alt={currentContent.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 33vw"
-          priority // Add priority for better loading
-        />
+        <div className="h-full flex flex-col lg:flex-row items-center justify-center">
+          {/* Title Section - Left */}
+          <div className="flex-1 space-y-4 flex flex-col justify-start items-start pb-30">
+            <h2
+              ref={titleRef}
+              className="text-[44px] leading-[57px] font-heading text-gray-900 capitalize "
+              style={{
+                position: "relative",
+                willChange: "transform, opacity",
+              }}
+            >
+              {currentContent.title}
+            </h2>
+          </div>
+
+          {/* Image Section - Middle */}
+          <div className="flex-1 w-full lg:w-auto flex justify-center">
+            <div
+              ref={imageRef}
+              className="relative h-64 sm:h-72 lg:h-80 xl:h-96 w-full max-w-sm lg:max-w-md overflow-hidden rounded-lg"
+              style={{ willChange: "transform, opacity" }}
+            >
+              <Image
+                key={`${currentContent.image}-${activeIndex}`}
+                src={currentContent.image}
+                alt={currentContent.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 33vw"
+                priority // Add priority for better loading
+              />
+            </div>
+          </div>
+
+          {/* Description Section - Right */}
+          <div className="flex-1 space-y-4 flex flex-col justify-end pt-40">
+            <div
+              ref={lineRef}
+              className="w-[60px] h-1 bg-[#123458] rounded-full"
+              style={{
+                transformOrigin: "left center",
+                willChange: "transform",
+              }}
+            ></div>
+            <p
+              ref={descriptionRef}
+              className="md:text-[14px] text-gray-600 leading-relaxed"
+              style={{ willChange: "transform, opacity" }}
+            >
+              {currentContent.desc}
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-    
-    {/* Description Section - Right */}
-    <div className="flex-1 space-y-4 flex flex-col justify-end pt-40">
-      <div
-        ref={lineRef}
-        className="w-[60px] h-1 bg-[#123458] rounded-full"
-        style={{
-          transformOrigin: "left center",
-          willChange: "transform",
-        }}
-      ></div>
-      <p
-        ref={descriptionRef}
-        className="md:text-[14px] text-gray-600 leading-relaxed"
-        style={{ willChange: "transform, opacity" }}
-      >
-        {currentContent.desc}
-      </p>
-    </div>
-  </div>
-</div>
     </div>
   );
 };

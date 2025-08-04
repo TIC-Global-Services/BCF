@@ -8,7 +8,7 @@ import { AppointmentBGImage, AppointmentMobileBGImage } from './Icons'
 const Appointment = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, {
-    once: false, // Changed to true to prevent re-triggering
+    once: false, 
     margin: "-100px"
   })
 
