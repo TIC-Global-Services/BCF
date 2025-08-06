@@ -4,7 +4,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useHeroAnimation } from "@/contexts/HeroAnimationContext";
-import Container from "./Container";
+import Container from "../../Components/Reusable/Container";
+
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);

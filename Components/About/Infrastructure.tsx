@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { INfraImage } from "@/assets/About/index";
+
 import Link from "next/link";
 import Container from "../Reusable/Container";
+import { INfraImage } from "@/Assets/About";
 
 const Infrastructure = () => {
   return (

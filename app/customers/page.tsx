@@ -1,7 +1,7 @@
 import Clientele from "@/Components/Customers/Clientele";
 import CustomerBento from "@/Components/Customers/CustomerBento";
 import GrowNetwork from "@/Components/Customers/GrowNetwork";
-import ContentSectionComponent from "@/components/Reusable/ContentSection";
+import ContentSectionComponent from "@/Components/Reusable/ContentSection";
 import React from "react";
 
 const page = () => {

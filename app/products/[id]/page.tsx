@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { products } from "@/data/Products";
-import ContentSectionComponent from "@/components/Reusable/ContentSection";
+import ContentSectionComponent from "@/Components/Reusable/ContentSection";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);

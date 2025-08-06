@@ -1,6 +1,8 @@
-import Hero from "../Reusable/HeroContainer"
-import { AboutBanner } from '@/assets/About/index'
+import { AboutBanner } from "@/Assets/About"
+
+
 import { Bodoni_Moda } from "next/font/google"
+import Hero from "../Reusable/HeroContainer"
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],

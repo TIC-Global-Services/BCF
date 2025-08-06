@@ -1,5 +1,5 @@
-import { BoilerImage, HydraImage } from "@/assets/Customers";
-import { Mining, Mining_3d, Mining_3d2, Boiler_3d, strianer_3d, Jet, Jet_3d, hydra_3d, AutoMobiles, auto_3d } from "@/assets/Products";
+import { BoilerImage, HydraImage } from "@/Assets/Customers";
+import { Mining, Mining_3d, Mining_3d2, Boiler_3d, strianer_3d, Jet, Jet_3d, hydra_3d, AutoMobiles, auto_3d } from "@/Assets/Products";
 
 
 export const products = [
