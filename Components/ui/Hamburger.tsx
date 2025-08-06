@@ -1,7 +1,8 @@
 import { motion } from "framer-motion"
 
 // Hamburger Icon Component
-const HamburgerIcon = ({ isOpen, onClick, isWhite }: {
+const HamburgerIcon = ({ isOpen, onClick, isWhite,isHeroSection }: {
+    isHeroSection:any
     isOpen: boolean;
     onClick: () => void;
     isWhite: boolean;
@@ -15,7 +16,7 @@ const HamburgerIcon = ({ isOpen, onClick, isWhite }: {
         <div className="w-6 h-6 relative flex flex-col justify-center">
             {/* Top line */}
             <motion.div
-                className={`w-6 h-0.5 ${isWhite ? 'bg-white' : 'bg-gray-700'} absolute`}
+                className={`w-6 h-0.5 ${isHeroSection === 'true' ? 'bg-white' : 'bg-gray-700'} absolute`}
                 animate={{
                     rotate: isOpen ? 45 : 0,
                     y: isOpen ? 0 : -6

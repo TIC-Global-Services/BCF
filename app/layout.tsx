@@ -6,6 +6,7 @@ import Footer from "@/components/Reusable/Footer";
 import LenisProvider from "@/wrapper/LenisScrollWrapper";
 import NavBar from "@/components/Reusable/NavBar";
 import { HeroAnimationProvider } from "@/contexts/HeroAnimationContext";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 // Bodoni Moda
 const bodoniModa = Bodoni_Moda({
@@ -45,6 +46,7 @@ export default function RootLayout({
             <NavBar />
             {children}
           </LenisProvider>
+          <ScrollToTop/>
           <Footer />
         </HeroAnimationProvider>
       </body>

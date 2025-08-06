@@ -8,4 +8,4 @@ const NavLinks: Record<string, string> = {
     "Contact": "/contact",
 }
 
-  export default NavLinks
+export default NavLinks

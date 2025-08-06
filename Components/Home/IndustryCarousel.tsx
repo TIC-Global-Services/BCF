@@ -9,8 +9,7 @@ import {
     PanInfo,
     ResolvedValues,
 } from "framer-motion";
-import Container from "../Reusable/Container";
-
+import Container from "@/components/Reusable/Container";
 
 const IMGS: { url: string; title: string; description: string }[] = [
     {
@@ -101,7 +100,7 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
     const cylinderWidth: number = isScreenSizeSm ? 1800 : 2400; // Reduced cylinder width
     const faceCount: number = galleryImages.length;
     const faceWidth: number = (cylinderWidth / faceCount) * 1; // Increased face width ratio
-    const radius: number = cylinderWidth / (1.5 * Math.PI); // Changed from 2.5 to 2 for tighter radius
+    const radius: number = cylinderWidth / (1.7 * Math.PI); // Changed from 2.5 to 2 for tighter radius
 
     const dragFactor: number = 0.05;
     const rotation = useMotionValue(0);
@@ -172,9 +171,9 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
     };
 
     return (
-        <Container>
-            <div className="relative h-[600px] w-full overflow-hidden">
-            <div className="flex h-full items-center justify-center [perspective:1200px] [transform-style:preserve-3d]">
+        <Container isMobileFullScreen={true}>
+            <div className="relative h-[600px] w-full  overflow-hidden">
+            <div className="flex h-full items-center  justify-center [perspective:1200px] [transform-style:preserve-3d]">
                 <motion.div
                     drag="x"
                     dragElastic={0}
@@ -195,7 +194,7 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
                     {galleryImages.map((item, i) => (
                         <div
                             key={i}
-                            className="group absolute flex h-fit items-center justify-center p-[1%]" // Reduced padding
+                            className="group absolute flex h-fit items-center justify-center p-[1%] [backface-visibility:hidden]" // Added backface-visibility:hidden
                             style={{
                                 width: `${faceWidth}px`,
                                 transform: `rotateY(${(360 / faceCount) * i}deg) translateZ(${radius}px)`,
@@ -211,12 +210,12 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
                                 />
 
                                 {/* Content overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 pl-4 pt-3.5 pb-5 text-white z-50">
+                                <div className="absolute bottom-0 left-0 right-0 pl-4 pt-3.5 pb-3 text-white z-50">
                                     <h3 className="text-2xl font-light leading-6">{item.title}</h3>
                                 </div>
 
                                 {/* Bottom blur effect */}
-                                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[2px]" />
+                                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[1px]" />
                             </div>
                         </div>
                     ))}

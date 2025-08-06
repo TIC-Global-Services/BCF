@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react'
+import React, { createContext, useContext, useState, useCallback, ReactNode, useRef, useEffect } from 'react'
 
 interface SectionConfig {
   id: string
@@ -48,6 +48,26 @@ export const HeroAnimationProvider: React.FC<HeroAnimationProviderProps> = ({ ch
   const [isHeroFullyScrolled, setIsHeroFullyScrolled] = useState(false)
   const [sections, setSections] = useState<SectionConfig[]>([])
   const [currentSection, setCurrentSection] = useState<SectionConfig | null>(null)
+  
+  // Use refs to store the latest values for synchronous access
+  const stateRef = useRef({
+    heroAnimationProgress: 0,
+    isHeroFullWidth: false,
+    isHeroSection: false,
+    isHeroFullyScrolled: false,
+    currentSection: null as SectionConfig | null
+  })
+
+  // Update refs whenever state changes
+  useEffect(() => {
+    stateRef.current = {
+      heroAnimationProgress,
+      isHeroFullWidth,
+      isHeroSection,
+      isHeroFullyScrolled,
+      currentSection
+    }
+  }, [heroAnimationProgress, isHeroFullWidth, isHeroSection, isHeroFullyScrolled, currentSection])
 
   // Register a section with its navbar requirements
   const registerSection = useCallback((section: SectionRegistration) => {
@@ -60,21 +80,23 @@ export const HeroAnimationProvider: React.FC<HeroAnimationProviderProps> = ({ ch
     })
   }, [])
 
-  // Update section visibility and current section
+  // Update section visibility and current section with better accuracy
   const updateSectionVisibility = useCallback((sectionId: string, isVisible: boolean) => {
     setSections(prev => {
       const updated = prev.map(section => 
         section.id === sectionId ? { ...section, isVisible } : section
       )
       
+      // Find the most appropriate current section
       let newCurrentSection: SectionConfig | null = null
       
       if (isVisible) {
         // The section that just became visible is the current one
         newCurrentSection = updated.find(section => section.id === sectionId) || null
       } else {
-        // Find any other visible section
-        newCurrentSection = updated.find(section => section.isVisible) || null
+        // Find the last visible section (prioritizing the most recently visible one)
+        const visibleSections = updated.filter(section => section.isVisible)
+        newCurrentSection = visibleSections[visibleSections.length - 1] || null
       }
       
       console.log('Section visibility updated:', {
@@ -90,16 +112,19 @@ export const HeroAnimationProvider: React.FC<HeroAnimationProviderProps> = ({ ch
     })
   }, [])
 
-  // Simple and clear navbar style logic
+  // Ultra-accurate navbar style logic with synchronous state access
   const getCurrentNavbarStyle = useCallback((): 'normal' | 'glass-white' | 'glass-black' => {
-    // Get current scroll position
+    // Get current scroll position synchronously
     const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    
+    // Use ref values for the most up-to-date state without waiting for re-renders
+    const currentState = stateRef.current;
 
     console.log('getCurrentNavbarStyle called:', {
       scrollY,
-      isHeroSection,
-      heroAnimationProgress,
-      currentSection: currentSection?.name || 'none'
+      isHeroSection: currentState.isHeroSection,
+      heroAnimationProgress: currentState.heroAnimationProgress,
+      currentSection: currentState.currentSection?.name || 'none'
     });
 
     // Rule 1: If at the very top of page (scroll = 0), always show normal navbar
@@ -109,21 +134,21 @@ export const HeroAnimationProvider: React.FC<HeroAnimationProviderProps> = ({ ch
     }
 
     // Rule 2: If in hero section, show glass-white
-    if (isHeroSection) {
+    if (currentState.isHeroSection) {
       console.log('Returning glass-white - in hero section');
       return 'glass-white'
     }
 
     // Rule 3: If there's a current section, use its style
-    if (currentSection) {
-      console.log('Returning section style:', currentSection.navbarStyle);
-      return currentSection.navbarStyle
+    if (currentState.currentSection) {
+      console.log('Returning section style:', currentState.currentSection.navbarStyle);
+      return currentState.currentSection.navbarStyle
     }
 
     // Rule 4: Default to glass-black
     console.log('Returning default glass-black');
     return 'glass-black'
-  }, [isHeroSection, heroAnimationProgress, currentSection])
+  }, []) // No dependencies since we use refs
 
   return (
     <HeroAnimationContext.Provider
