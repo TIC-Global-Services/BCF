@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Bodoni_Moda, Inter_Tight } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "@/Components/Reusable/Footer";
+import Footer from "@/components/Reusable/Footer";
 import LenisProvider from "@/wrapper/LenisScrollWrapper";
+import NavBar from "@/components/Reusable/NavBar";
+import { HeroAnimationProvider } from "@/contexts/HeroAnimationContext";
 
 // Bodoni Moda
 const bodoniModa = Bodoni_Moda({
@@ -11,11 +13,6 @@ const bodoniModa = Bodoni_Moda({
   subsets: ["latin"],
 });
 
-// // Bodoni Moda SC
-// const bodoniModaSC = Bodoni_Moda_SC({
-//   variable: "--font-bodoni-moda-sc",
-//   subsets: ["latin"],
-// });
 
 // Inter Tight
 const interTight = Inter_Tight({
@@ -25,7 +22,7 @@ const interTight = Inter_Tight({
 
 // TT HOBES PRO TRIAL LIGHT
 const TTFont = localFont({
-  src: "../fonts/TT Hoves Pro Trial Light.ttf", 
+  src: "../fonts/TT Hoves Pro Trial Light.ttf",
   variable: "--font-my-TTFont",
   display: "swap",
 });
@@ -43,10 +40,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bodoniModa.variable} ${interTight.variable} ${TTFont.variable} antialiased`}>
-        <LenisProvider>
-        {children}
-        </LenisProvider>
-        <Footer />
+        <HeroAnimationProvider>
+          <LenisProvider>
+            <NavBar />
+            {children}
+          </LenisProvider>
+          <Footer />
+        </HeroAnimationProvider>
       </body>
     </html>
   );

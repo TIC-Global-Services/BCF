@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Logo1, Logo2 } from "../Reusable/Icons";
+import { Logo1, Logo2 } from "@/assets/Customers/index";
 
 const ValuableLogos = () => [
   { logo: Logo1, alt: "Logo 1", id: 1 },

@@ -1,8 +1,8 @@
-import Axis from "@/Components/Adaption/Axis";
-import CastingGrades from "@/Components/Adaption/CastingGrades";
-import Innovation from "@/Components/Adaption/Innovation";
-import ProductLine from "@/Components/Adaption/ProductLine";
-import ContentSectionComponent from "@/Components/Reusable/ContentSectionComponent";
+import Axis from "@/components/Adaption/Axis";
+import CastingGrades from "@/components/Adaption/CastingGrades";
+import Innovation from "@/components/Adaption/Innovation";
+import ProductLine from "@/components/Adaption/ProductLine";
+import ContentSectionComponent from "@/components/Reusable/ContentSection";
 import React from "react";
 
 const page = () => {

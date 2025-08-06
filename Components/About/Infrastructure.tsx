@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { INfraImage } from "../Reusable/Icons";
+import { INfraImage } from "@/assets/About/index";
 import Link from "next/link";
 
 const Infrastructure = () => {

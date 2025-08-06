@@ -1,13 +1,15 @@
-import Ferrous from "@/Components/Home/Ferrous";
-import Foundation from "@/Components/Home/Foundation";
-import Appointment from "@/Components/Reusable/Appointment";
-import ContentSectionComponent from "@/Components/Reusable/ContentSectionComponent";
-import Footer from "@/Components/Reusable/Footer";
-import Image from "next/image";
+import Ferrous from "@/components/Home/Ferrous";
+import Foundation from "@/components/Home/Foundation";
+import Hero from "@/components/Home/Hero";
+import Appointment from "@/components/Reusable/Appointment";
+import ContentSectionComponent from "@/components/Reusable/ContentSection";
+import RollingGallery from "@/components/ui/RollingGallery";
+
 
 export default function Home() {
   return (
     <div>
+      <Hero/>
       <div className="py-20">
         <ContentSectionComponent
           heading="Welcome to"
@@ -20,6 +22,7 @@ We offer a comprehensive range of iron castings and fabricated components, cate
           letterSpacing="-2px"
         />
       </div>
+      <RollingGallery/>
       <Foundation />
       <Ferrous />
       <Appointment />

@@ -3,6 +3,11 @@
 :root {
   --background: #171717;
   --foreground: #EdEbE8;
+
+}
+
+@theme{
+  --color-navtext:#F1EFEC;
 }
 
 @theme inline {
@@ -76,4 +81,26 @@ html {
 
 .fadeGradient {
   background: linear-gradient(90deg, #F9F8F7 0%, rgba(249, 248, 247, 0) 50%, #F9F8F7 100%);
+}
+
+
+/* clip path cut */
+.clipped-div {
+  width: 100%;
+  height: 300px;
+  background: white;
+  clip-path: polygon(
+  0% 0%,        /* top-left */
+  25% 2%,       /* start top curve */
+  50% 4%,       /* center top dip */
+  75% 2%,       /* end top curve */
+  100% 0%,      /* top-right */
+
+  100% 100%,    /* bottom-right */
+  75% 98%,      /* start bottom curve */
+  50% 96%,      /* center bottom dip */
+  25% 98%,      /* end bottom curve */
+  0% 100%       /* bottom-left */
+);
+
 }

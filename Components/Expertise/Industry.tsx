@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { IndustryImage } from "../Reusable/Icons";
+import { IndustryImage } from "@/assets/Expertise/index";
 
 const Industry = () => {
   const ref = useRef(null);

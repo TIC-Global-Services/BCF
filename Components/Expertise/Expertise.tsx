@@ -3,7 +3,7 @@
 import React, { useRef, useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { motion, useInView, Variants } from 'framer-motion';
-import { Icon1, Icon2, Icon3, Icon4, Icon5, IconWhite1, IconWhite2, IconWhite3, IconWhite4, IconWhite5 } from '../Reusable/Icons';
+import { Icon1, Icon2, Icon3, Icon4, Icon5, IconWhite1, IconWhite2, IconWhite3, IconWhite4, IconWhite5 } from '@/assets/Expertise/index';
 
 // Types
 interface ExpertiseItem {

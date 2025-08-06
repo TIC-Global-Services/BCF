@@ -3,11 +3,11 @@ import Image from "next/image";
 import {
   BoilerImage,
   HydraImage,
-  JetImage,
   StraightImage,
-} from "../Reusable/Icons";
+} from "@/assets/Customers/index";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
+import { JetImage } from "@/assets/Adaption";
 
 const contents = [
   { image: BoilerImage, name: "Boiler Bolt" },

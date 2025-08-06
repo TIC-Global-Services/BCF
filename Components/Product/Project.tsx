@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Dots } from "../Reusable/Icons";
+import { Dots } from "@/assets/Products/index";
 
 const Project = () => {
   const ref = useRef(null);

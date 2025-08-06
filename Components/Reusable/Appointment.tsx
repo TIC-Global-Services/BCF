@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { AppointmentBGImage, AppointmentMobileBGImage } from './Icons'
+import { AppointmentBGImage, AppointmentMobileBGImage } from '@/assets/Appointment/index'
 
 const Appointment = () => {
   const ref = useRef(null)

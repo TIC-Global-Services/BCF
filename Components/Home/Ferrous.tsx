@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
-import { FEImage, MetalImage } from "../Reusable/Icons";
+import { FEImage, MetalImage } from "@/assets/Home/index";
 
 const contents = [
   {

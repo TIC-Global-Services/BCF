@@ -12,7 +12,7 @@ import {
   Mining_3d,
   Mining_3d2,
   strianer_3d,
-} from "@/Components/Reusable/Icons";
+} from "@/components/Reusable/Icons";
 
 export const products = [
   {

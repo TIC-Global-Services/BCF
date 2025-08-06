@@ -1,7 +1,7 @@
-import Experience from "@/Components/Expertise/Experience";
-import Expertise from "@/Components/Expertise/Expertise";
-import Industry from "@/Components/Expertise/Industry";
-import Appointment from "@/Components/Reusable/Appointment";
+import Experience from "@/components/Expertise/Experience";
+import Expertise from "@/components/Expertise/Expertise";
+import Industry from "@/components/Expertise/Industry";
+import Appointment from "@/components/Reusable/Appointment";
 import React from "react";
 
 const page = () => {
