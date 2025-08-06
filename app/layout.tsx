@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bodoniModa.variable} ${interTight.variable} ${TTFont.variable} antialiased`}>
+      <body className={`${bodoniModa.variable} ${interTight.variable} ${TTFont.variable} antialiased bg-white`}>
         <HeroAnimationProvider>
           <LenisProvider>
             <NavBar />

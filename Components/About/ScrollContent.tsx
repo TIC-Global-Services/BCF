@@ -1,25 +1,54 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import Container from '../Reusable/Container';
+
+// Extend Window interface to include GSAP properties
+declare global {
+  interface Window {
+    gsap: any;
+    ScrollTrigger: any;
+  }
+}
+
+interface ContentData {
+  title: string;
+  text: string;
+  overlay: string;
+}
+
+interface ImagePosition {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+  zIndex: number;
+  scale: number;
+  opacity?: number;
+}
+
+interface VisibleImage extends ImagePosition {
+  index: number;
+}
 
 const ScrollContentImages = () => {
-  const containerRef = useRef(null);
-  const contentRef = useRef(null);
-  const imagesRef = useRef([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const contentData = [
+  const contentData: ContentData[] = [
     {
       title: "Diversity & Inclusion<br />Policy",
       text: "At Bhuma Cast Factory, we are committed to building a workplace that reflects the diversity of the communities we serve and fosters a culture of inclusion, respect, and equal opportunity.",
       overlay: "Equal Opportunity Employment"
     },
     {
-      title: "Inclusive Workplace<br />Culture", 
+      title: "Inclusive Workplace<br />Culture",
       text: "We believe that diverse perspectives drive innovation and creativity. Our inclusive environment ensures every voice is heard and valued.",
       overlay: "Collaborative Excellence"
     },
     {
       title: "Equal Growth<br />Opportunities",
-      text: "Every employee deserves the chance to grow and succeed. We provide equal access to training, mentorship, and advancement opportunities.", 
+      text: "Every employee deserves the chance to grow and succeed. We provide equal access to training, mentorship, and advancement opportunities.",
       overlay: "Career Development"
     },
     {
@@ -34,43 +63,43 @@ const ScrollContentImages = () => {
     }
   ];
 
-  const images = [
+  const images: string[] = [
     "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ];
 
   useEffect(() => {
-    // Load GSAP
-    if (!window.gsap) {
-      const script1 = document.createElement('script');
-      script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-      document.head.appendChild(script1);
-      
-      script1.onload = () => {
-        const script2 = document.createElement('script');
-        script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
-        document.head.appendChild(script2);
-        
-        script2.onload = () => {
-          window.gsap.registerPlugin(window.ScrollTrigger);
-          initAnimations();
-        };
-      };
-    } else {
-      initAnimations();
-    }
+    const loadScript = (src: string): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) {
+          resolve();
+          return;
+        }
 
-    function initAnimations() {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    };
+
+    const initAnimations = () => {
       const { gsap, ScrollTrigger } = window;
-      
+
+      if (!gsap || !ScrollTrigger) {
+        console.error('GSAP or ScrollTrigger not loaded');
+        return;
+      }
+
       // Clear existing triggers
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.getAll().forEach((st: any) => st.kill());
 
       // Initial positions for all images - maintaining aspect ratio 4:5 (width:height) for better height
-      const positions = [
+      const positions: ImagePosition[] = [
         { width: 320, height: 400, x: 0, y: 0, zIndex: 50, scale: 1 },
         { width: 288, height: 360, x: 80, y: 16, zIndex: 40, scale: 0.9 },
         { width: 256, height: 320, x: 160, y: 32, zIndex: 30, scale: 0.8 },
@@ -104,7 +133,7 @@ const ScrollContentImages = () => {
           start: "top top",
           end: "+=500%",
           scrub: 1,
-          onUpdate: (self) => {
+          onUpdate: (self: any) => {
             const totalProgress = self.progress;
             const imageCount = images.length;
             const sectionProgress = totalProgress * (imageCount - 1);
@@ -112,8 +141,8 @@ const ScrollContentImages = () => {
             const localProgress = sectionProgress - currentSection;
 
             // Calculate which images should be visible and their correct positions
-            let visibleImages = [];
-            
+            let visibleImages: VisibleImage[] = [];
+
             // Determine current state based on scroll progress
             if (currentSection === 0 && localProgress === 0) {
               // Initial state - all images in original positions
@@ -127,7 +156,7 @@ const ScrollContentImages = () => {
             } else {
               // Calculate based on how many sections have been scrolled
               let activeImageIndex = 0;
-              
+
               // Add images that are still active (not fully scrolled)
               for (let i = currentSection; i < imageCount && activeImageIndex < positions.length; i++) {
                 if (i === currentSection) {
@@ -149,11 +178,11 @@ const ScrollContentImages = () => {
                       // Next image transitioning to front position
                       const currentPos = positions[positionIndex] || positions[positions.length - 1];
                       const targetPos = positions[0]; // Always transition to front position
-                      
+
                       // Gradually increase size and move to front
                       const sizeProgress = localProgress;
                       const baseZIndex = 50 - (activeImageIndex * 2); // Lower than scrolling image
-                      
+
                       visibleImages.push({
                         index: i,
                         width: currentPos.width + (targetPos.width - currentPos.width) * sizeProgress,
@@ -168,11 +197,11 @@ const ScrollContentImages = () => {
                       // Other background images - gradually increase in size
                       const basePos = positions[positionIndex] || positions[positions.length - 1];
                       const nextPos = positions[positionIndex - 1] || positions[0];
-                      
+
                       // Gradual size increase for background images
                       const backgroundProgress = localProgress * 0.3; // Slower growth rate
                       const baseZIndex = 45 - (activeImageIndex * 2); // Even lower zIndex
-                      
+
                       visibleImages.push({
                         index: i,
                         width: basePos.width + (nextPos.width - basePos.width) * backgroundProgress,
@@ -203,7 +232,7 @@ const ScrollContentImages = () => {
 
             // Apply visible images - sort by zIndex to ensure proper layering
             visibleImages.sort((a, b) => a.zIndex - b.zIndex); // Sort by zIndex ascending (lower zIndex renders first/behind)
-            
+
             visibleImages.forEach(imageData => {
               const img = imagesRef.current[imageData.index];
               if (img) {
@@ -220,7 +249,7 @@ const ScrollContentImages = () => {
             });
 
             // Update content - change when image has scrolled 65%
-            let contentIndex;
+            let contentIndex: number;
             if (localProgress >= 0.65) {
               // After 65% scroll, show next content
               contentIndex = Math.min(currentSection + 1, contentData.length - 1);
@@ -228,18 +257,18 @@ const ScrollContentImages = () => {
               // Before 65% scroll, show current content
               contentIndex = Math.min(currentSection, contentData.length - 1);
             }
-            
+
             if (contentRef.current && contentData[contentIndex]) {
-              const title = contentRef.current.children[0];
-              const text = contentRef.current.children[1];
-              
+              const title = contentRef.current.children[0] as HTMLElement;
+              const text = contentRef.current.children[1] as HTMLElement;
+
               if (title) title.innerHTML = contentData[contentIndex].title;
               if (text) text.textContent = contentData[contentIndex].text;
-              
+
               // Update overlay text - always show on the front-most visible image
               const frontImage = visibleImages.find(img => img.zIndex === Math.max(...visibleImages.map(v => v.zIndex)));
               if (frontImage) {
-                const overlay = imagesRef.current[frontImage.index]?.querySelector('.overlay-text');
+                const overlay = imagesRef.current[frontImage.index]?.querySelector('.overlay-text') as HTMLElement;
                 if (overlay) overlay.textContent = contentData[contentIndex].overlay;
               }
             }
@@ -247,65 +276,97 @@ const ScrollContentImages = () => {
             // Content animation
             const contentProgress = localProgress;
             if (contentRef.current) {
-              gsap.set(contentRef.current.children[0], {
-                y: -30 * contentProgress,
-                opacity: 1 - contentProgress * 0.3
-              });
-              gsap.set(contentRef.current.children[1], {
-                y: -20 * contentProgress,
-                opacity: 1 - contentProgress * 0.3
-              });
+              const titleElement = contentRef.current.children[0] as HTMLElement;
+              const textElement = contentRef.current.children[1] as HTMLElement;
+
+              if (titleElement) {
+                gsap.set(titleElement, {
+                  y: -30 * contentProgress,
+                  opacity: 1 - contentProgress * 0.3
+                });
+              }
+
+              if (textElement) {
+                gsap.set(textElement, {
+                  y: -20 * contentProgress,
+                  opacity: 1 - contentProgress * 0.3
+                });
+              }
             }
           }
         }
       });
-    }
+    };
+
+    // Load GSAP
+    const loadGSAP = async () => {
+      try {
+        if (!window.gsap) {
+          await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
+        }
+
+        if (!window.ScrollTrigger) {
+          await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
+          window.gsap.registerPlugin(window.ScrollTrigger);
+        }
+
+        initAnimations();
+      } catch (error) {
+        console.error('Failed to load GSAP:', error);
+      }
+    };
+
+    loadGSAP();
 
     return () => {
       if (window.ScrollTrigger) {
-        window.ScrollTrigger.getAll().forEach(st => st.kill());
+        window.ScrollTrigger.getAll().forEach((st: any) => st.kill());
       }
     };
   }, []);
 
   return (
     <div style={{ height: '600vh' }}>
-      <div ref={containerRef} className="flex items-center justify-between min-h-screen bg-gray-50 px-8 lg:px-16">
-        
-        {/* Left Content */}
-        <div className="flex-1 max-w-xl pr-12">
-          <div ref={contentRef}>
-            <h1 className="text-5xl lg:text-6xl font-light text-black mb-8 leading-tight">
-              Diversity & Inclusion<br />Policy
-            </h1>
-            <p className="text-gray-700 text-base leading-relaxed max-w-md">
-              At Bhuma Cast Factory, we are committed to building a workplace that reflects the diversity of the communities we serve and fosters a culture of inclusion, respect, and equal opportunity.
-            </p>
-          </div>
-        </div>
+      <Container>
+        <div ref={containerRef} className="flex items-center justify-between min-h-screen">
 
-        {/* Right Images */}
-        <div className="flex-1 relative flex justify-center items-center">
-          <div className="relative w-96 h-96">
-            {images.map((src, index) => (
-              <div
-                key={index}
-                ref={el => imagesRef.current[index] = el}
-                className="absolute rounded-2xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src={src}
-                  alt={`Business ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 text-white p-4">
-                  <h3 className="text-lg font-medium overlay-text">Equal Opportunity Employment</h3>
+          {/* Left Content */}
+          <div className="flex-1 max-w-xl pr-12">
+            <div ref={contentRef}>
+              <h1 className="text-5xl lg:text-6xl font-light text-black mb-8 leading-tight">
+                Diversity & Inclusion<br />Policy
+              </h1>
+              <p className="text-gray-700 text-base leading-relaxed max-w-md">
+                At Bhuma Cast Factory, we are committed to building a workplace that reflects the diversity of the communities we serve and fosters a culture of inclusion, respect, and equal opportunity.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Images */}
+          <div className="flex-1 relative flex justify-center items-center">
+            <div className="relative w-96 h-96">
+              {images.map((src, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    imagesRef.current[index] = el;
+                  }}
+                  className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                >
+                  <img
+                    src={src}
+                    alt={`Business ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0  bg-opacity-80 text-white p-4">
+                    <h3 className="text-lg font-medium overlay-text">Equal Opportunity Employment</h3>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

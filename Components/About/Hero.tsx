@@ -1,5 +1,5 @@
 import Hero from "../Reusable/HeroContainer"
-import { HeroBanner } from '@/assets/Home'
+import { AboutBanner } from '@/assets/About/index'
 import { Bodoni_Moda } from "next/font/google"
 
 const bodoni = Bodoni_Moda({
@@ -10,7 +10,7 @@ const bodoni = Bodoni_Moda({
 export const heroContent = {
   title: ['ABOUT'],
   buttonText: 'Contact Us',
-  backgroundImage: HeroBanner.src,
+  backgroundImage: AboutBanner.src,
   fontClassName: bodoni.className
 }
 

@@ -25,7 +25,12 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ content, isRight = false, isLeft = true }) => {
     const heroRef = useRef(null)
     const containerRef = useRef(null)
-    const { setHeroAnimationProgress, setIsHeroFullWidth, setIsHeroSection, isHeroSection } = useHeroAnimation()
+    const {
+        setHeroAnimationProgress,
+        setIsHeroFullWidth,
+        setIsHeroSection,
+        setIsHeroFullyScrolled
+    } = useHeroAnimation()
 
     useEffect(() => {
         const heroElement = heroRef.current
@@ -66,6 +71,9 @@ const Hero: React.FC<HeroProps> = ({ content, isRight = false, isLeft = true }) 
                     setHeroAnimationProgress(progress)
                     setIsHeroFullWidth(progress > 0.3)
 
+                    // Track when hero is fully scrolled (animation complete)
+                    setIsHeroFullyScrolled(progress >= 0.99)
+
                     // Only apply clipPath animation on desktop
                     if (!isMobile) {
                         const clipPath = progress > 0.3
@@ -99,37 +107,76 @@ const Hero: React.FC<HeroProps> = ({ content, isRight = false, isLeft = true }) 
 
         // Animate hero size
         tl.fromTo(heroElement,
-            { width: '100%', height: isMobile ? '400px' : '500px', marginTop: "50px" },
-            { width: '100vw', height: '100vh', duration: 1, ease: 'power2.out' }, 0)
+            {
+                width: '100%',
+                height: isMobile ? '400px' : '500px',
+                marginTop: "50px" // initial margin
+            },
+            {
+                width: '100vw',
+                height: '100vh',
+                marginTop: "0px", // final margin
+                duration: 1,
+                ease: 'power2.out'
+            },
+            0
+        )
 
 
+        // Track hero section visibility with proper scroll detection
         ScrollTrigger.create({
             trigger: containerElement,
             start: 'top top',
-            end: () => 'bottom top+=1',
-            onLeave: () => {
-                console.log('Hero fully left the screen')
-                setIsHeroSection(false)
-            },
-            onEnterBack: () => {
-                console.log('Hero fully re-entered the screen')
-                setIsHeroSection(true)
-            },
-            onEnter: () => {
-                console.log('Hero fully re-entered the screen')
-                setIsHeroSection(true)
-            },
-            // Optional: add `markers: true` here to debug
+            end: 'bottom top',
+            onUpdate: (self) => {
+                const isInView = self.progress < 1
+                setIsHeroSection(isInView)
+
+                // Only mark as fully scrolled when it's totally out
+                if (self.progress >= 1) {
+                    setIsHeroFullyScrolled(true)
+                } else {
+                    setIsHeroFullyScrolled(false)
+                }
+            }
         })
+
+
+        // Handle scroll detection - only activate hero when user actually scrolls
+        let hasScrolled = false
+        const handleScroll = () => {
+            if (!hasScrolled && window.scrollY > 0) {
+                hasScrolled = true
+                console.log('User started scrolling - activating hero')
+                setIsHeroSection(true)
+            } else if (window.scrollY === 0) {
+                hasScrolled = false
+                console.log('Back to very top of page')
+                setIsHeroSection(false)
+                setHeroAnimationProgress(0)
+                setIsHeroFullWidth(false)
+                setIsHeroFullyScrolled(false)
+            }
+        }
+
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll)
+
+        // Initial check - ensure hero is not active at page load
+        if (window.scrollY === 0) {
+            setIsHeroSection(false)
+        }
 
         // Cleanup
         return () => {
             ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+            window.removeEventListener('scroll', handleScroll)
             setHeroAnimationProgress(0)
             setIsHeroFullWidth(false)
             setIsHeroSection(false)
+            setIsHeroFullyScrolled(false)
         }
-    }, [setHeroAnimationProgress, setIsHeroFullWidth, setIsHeroSection])
+    }, [setHeroAnimationProgress, setIsHeroFullWidth, setIsHeroSection, setIsHeroFullyScrolled])
 
     return (
         <div ref={containerRef} className='h-screen'>

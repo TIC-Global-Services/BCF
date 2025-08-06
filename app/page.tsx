@@ -3,7 +3,7 @@ import Foundation from "@/components/Home/Foundation";
 import Hero from "@/components/Home/Hero";
 import Appointment from "@/components/Reusable/Appointment";
 import ContentSectionComponent from "@/components/Reusable/ContentSection";
-import RollingGallery from "@/components/ui/RollingGallery";
+import RollingGallery from "@/components/Home/RollingGallery";
 
 
 export default function Home() {
