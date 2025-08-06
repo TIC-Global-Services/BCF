@@ -1,18 +1,6 @@
-import {
-  auto_3d,
-  AutoMobiles,
-  Boiler_3d,
-  BoilerImage,
-  hydra_3d,
-  HydraImage,
-  Jet,
-  Jet_3d,
-  JetImage,
-  Mining,
-  Mining_3d,
-  Mining_3d2,
-  strianer_3d,
-} from "@/components/Reusable/Icons";
+import { BoilerImage, HydraImage } from "@/assets/Customers";
+import { Mining, Mining_3d, Mining_3d2, Boiler_3d, strianer_3d, Jet, Jet_3d, hydra_3d, AutoMobiles, auto_3d } from "@/assets/Products";
+
 
 export const products = [
   {
@@ -53,7 +41,7 @@ export const products = [
     subHeading: "Power of Precision",
     headingDescription:
       "Engineered for strength and high-temperature performance, our Boiler Bolts are built to withstand extreme industrial conditions.",
-    maxWidth: "400px",
+    maxWidth: "700px",
     description: [
       {
         id: 1,

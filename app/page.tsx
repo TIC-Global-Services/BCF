@@ -1,9 +1,9 @@
-import Ferrous from "@/components/Home/Ferrous";
-import Foundation from "@/components/Home/Foundation";
-import Hero from "@/components/Home/Hero";
-import Appointment from "@/components/Reusable/Appointment";
-import ContentSectionComponent from "@/components/Reusable/ContentSection";
-import RollingGallery from "@/components/Home/RollingGallery";
+import Ferrous from "@/Components/Home/Ferrous";
+import Foundation from "@/Components/Home/Foundation";
+import Hero from "@/Components/Home/Hero";
+import Appointment from "@/Components/Reusable/Appointment";
+import ContentSectionComponent from "@/Components/Reusable/ContentSection";
+import RollingGallery from "@/Components/Home/RollingGallery";
 
 
 export default function Home() {

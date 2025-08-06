@@ -1,5 +1,5 @@
-import MediaKit from '@/components/Contact/MediaKit'
-import Questions from '@/components/Contact/Questions'
+import MediaKit from '@/Components/Contact/MediaKit'
+import Questions from '@/Components/Contact/Questions'
 import React from 'react'
 
 const page = () => {

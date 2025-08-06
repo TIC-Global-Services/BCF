@@ -328,7 +328,7 @@ const ScrollContentImages = () => {
   return (
     <div style={{ height: '600vh' }}>
       <Container>
-        <div ref={containerRef} className="flex items-center justify-between min-h-screen">
+        <div ref={containerRef} className="flex md:flex-row flex-col items-center justify-between min-h-screen">
 
           {/* Left Content */}
           <div className="flex-1 max-w-xl pr-12">

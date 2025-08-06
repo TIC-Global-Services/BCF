@@ -19,7 +19,7 @@ const ContentSectionComponent: React.FC<ContentSectionProps> = ({
   paragraph,
   linkText,
   linkHref,
-  maxWidth = "720px",
+  maxWidth = "400px",
   letterSpacing = "0px",
 }) => {
   const ref = useRef(null);
