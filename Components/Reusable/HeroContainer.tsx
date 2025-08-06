@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({
         isTablet: false,
         isDesktop: false
     });
-    
+
     const {
         setHeroAnimationProgress,
         setIsHeroFullWidth,
@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({
         const updateDimensions = () => {
             const width = window.innerWidth;
             const height = window.innerHeight;
-            
+
             setDimensions({
                 width,
                 height,
@@ -64,7 +64,7 @@ const Hero: React.FC<HeroProps> = ({
         };
 
         updateDimensions();
-        
+
         // Add resize listener with debouncing
         let resizeTimeout: NodeJS.Timeout;
         const handleResize = () => {
@@ -86,10 +86,10 @@ const Hero: React.FC<HeroProps> = ({
     // Calculate responsive dimensions based on actual viewport
     const getResponsiveDimensions = () => {
         const { width, height, isMobile, isTablet } = dimensions;
-        
+
         let initialHeight: number;
         let maxWidth = width;
-        
+
         if (isMobile) {
             // Mobile: Much larger - 85-95% of viewport height, min 500px
             initialHeight = Math.max(height * 0.85, Math.min(500, height * 0.95));
@@ -100,7 +100,7 @@ const Hero: React.FC<HeroProps> = ({
             // Desktop: 70-80% of viewport height, min 650px
             initialHeight = Math.max(height * 0.7, Math.min(650, height * 0.8));
         }
-        
+
         return {
             initialHeight: Math.round(initialHeight),
             maxWidth,
@@ -160,6 +160,7 @@ const Hero: React.FC<HeroProps> = ({
             });
         }
 
+        
         const updateHeroStates = (progress: number, scrollY: number, isScrollTriggerActive: boolean) => {
             if (rafId.current) {
                 cancelAnimationFrame(rafId.current);
@@ -168,13 +169,8 @@ const Hero: React.FC<HeroProps> = ({
             rafId.current = requestAnimationFrame(() => {
                 const isAtTop = scrollY <= 10;
                 
-                // FINAL FIX: Hero is fully scrolled when we've scrolled significantly past the point
-                // where ScrollTrigger became inactive (giving buffer for hero to completely exit)
-                const bufferDistance = dimensions.height * 0.3; // 30% of viewport height as buffer
-                const isFullyScrolled = triggerInactiveAt > 0 && 
-                                       scrollY > (triggerInactiveAt + bufferDistance) && 
-                                       progress >= 1.0 && 
-                                       !isAtTop;
+                // SIMPLE & DIRECT: Just like the working code
+                const isFullyScrolled = progress >= 1.0 && !isAtTop;
                 
                 const isFullWidth = progress > 0.3;
                 const isInView = progress >= 0.6;
@@ -184,28 +180,43 @@ const Hero: React.FC<HeroProps> = ({
                 setIsHeroSection(isInView && !isAtTop);
                 setIsHeroFullyScrolled(isFullyScrolled);
                 
-                console.log('Hero state updated:', {
+                console.log('Hero state updated (simple):', {
                     scrollY: scrollY.toFixed(1),
                     progress: progress.toFixed(3),
-                    triggerInactiveAt,
-                    bufferDistance: bufferDistance.toFixed(1),
-                    requiredScrollY: triggerInactiveAt > 0 ? (triggerInactiveAt + bufferDistance).toFixed(1) : 'N/A',
+                    isFullyScrolled,
                     isAtTop,
-                    isInView: isInView,
-                    isScrollTriggerActive,
-                    isHeroSection: isInView && !isAtTop,
-                    isHeroFullyScrolled: isFullyScrolled,
-                    conditions: {
-                        triggerWasInactive: triggerInactiveAt > 0,
-                        scrolledPastBuffer: scrollY > (triggerInactiveAt + bufferDistance),
-                        progressComplete: progress >= 1.0,
-                        notAtTop: !isAtTop
-                    }
+                    progressComplete: progress >= 1.0
                 });
             });
         };
-        
 
+        ScrollTrigger.create({
+            trigger: containerElement,
+            start: "top top",
+            end: "bottom top",
+            onUpdate: (self) => {
+                const scrollY = window.scrollY;
+                const isAtTop = scrollY <= 10;
+                
+                // Direct tracking like working code
+                if (self.progress >= 1 && !isAtTop) {
+                    setIsHeroFullyScrolled(true);
+                } else {
+                    setIsHeroFullyScrolled(false);
+                }
+                
+                // Also update isHeroSection based on progress
+                const isInView = self.progress < 1;
+                setIsHeroSection(isInView && !isAtTop);
+                
+                console.log('Hero visibility tracker:', {
+                    progress: self.progress.toFixed(3),
+                    isFullyScrolled: self.progress >= 1 && !isAtTop,
+                    isInView: isInView && !isAtTop
+                });
+            }
+        });
+        
         // ULTRA-STABLE ANIMATION TIMELINE
         const timeline = gsap.timeline({
             paused: true,
@@ -231,7 +242,7 @@ const Hero: React.FC<HeroProps> = ({
             transformOrigin: "center center",
         }, 0);
 
-        
+
         scrollTriggerRef.current = ScrollTrigger.create({
             trigger: containerElement,
             start: "top top",
@@ -247,15 +258,15 @@ const Hero: React.FC<HeroProps> = ({
                 const progress = self.progress;
                 const scrollY = window.scrollY;
                 const isScrollTriggerActive = self.isActive;
-                
+
                 // Update timeline progress smoothly
                 timeline.progress(progress);
-                
+
                 // OPTIMIZED visual effects with larger initial size
                 if (!isMobile && progress < 1) {
                     // Smooth clip-path animation - LESS AGGRESSIVE CLIPPING
                     const clipProgress = Math.min(progress, 0.8);
-                    
+
                     const clipPath = clipProgress > 0.3
                         ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
                         : `polygon(
@@ -270,9 +281,9 @@ const Hero: React.FC<HeroProps> = ({
                             ${Math.round(20 - clipProgress * 20)}% ${Math.round(99 + clipProgress * 1)}%, 
                             0% 100%
                         )`;
-        
+
                     const borderRadius = clipProgress >= 0.8 ? 0 : Math.round(32 - clipProgress * 32);
-        
+
                     // Apply with GPU acceleration
                     gsap.set(heroElement, {
                         clipPath,
@@ -282,19 +293,19 @@ const Hero: React.FC<HeroProps> = ({
                 } else if (isMobile && progress < 1) {
                     // Mobile: smooth border radius only - OPTIMIZED RADIUS
                     const borderRadius = progress >= 0.8 ? 0 : Math.round(16 - progress * 16);
-                    gsap.set(heroElement, { 
+                    gsap.set(heroElement, {
                         borderRadius,
                         force3D: true,
                     });
                 }
-                
+
                 // Update states with accurate ScrollTrigger status
                 updateHeroStates(progress, scrollY, isScrollTriggerActive);
             },
             onToggle: (self) => {
                 const scrollY = window.scrollY;
                 const isScrollTriggerActive = self.isActive;
-                
+
                 // CRITICAL: Track the exact scroll position when ScrollTrigger becomes inactive
                 if (!isScrollTriggerActive && triggerInactiveAt === 0) {
                     setTriggerInactiveAt(scrollY);
@@ -303,13 +314,13 @@ const Hero: React.FC<HeroProps> = ({
                     // Reset when ScrollTrigger becomes active again (scrolling back up)
                     setTriggerInactiveAt(0);
                 }
-                
+
                 updateHeroStates(self.progress, scrollY, isScrollTriggerActive);
             },
             onRefresh: () => {
                 // Reset trigger inactive position on refresh
                 setTriggerInactiveAt(0);
-                
+
                 // Ensure stable positioning on refresh
                 const scrollY = window.scrollY;
                 if (scrollY <= 10) {
@@ -317,7 +328,7 @@ const Hero: React.FC<HeroProps> = ({
                 }
             }
         });
-        
+
 
         // Store timeline reference
         animationRef.current = timeline;
@@ -325,13 +336,13 @@ const Hero: React.FC<HeroProps> = ({
         // OPTIMIZED scroll detection with device-specific tolerance
         let ticking = false;
         const scrollTolerance = isMobile ? 20 : 15; // Slightly higher tolerance
-        
+
         const handleScroll = () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
                     const scrollY = window.scrollY;
                     const isAtTop = scrollY <= scrollTolerance;
-                    
+
                     if (isAtTop) {
                         // When at top, reset everything
                         setTriggerInactiveAt(0);
@@ -344,7 +355,7 @@ const Hero: React.FC<HeroProps> = ({
                             updateHeroStates(1.0, scrollY, false);
                         }
                     }
-                    
+
                     ticking = false;
                 });
                 ticking = true;
@@ -364,14 +375,14 @@ const Hero: React.FC<HeroProps> = ({
             if (rafId.current) {
                 cancelAnimationFrame(rafId.current);
             }
-            
+
             if (animationRef.current) {
                 animationRef.current.kill();
             }
-            
+
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
             window.removeEventListener("scroll", handleScroll);
-            
+
             // Reset states
             setHeroAnimationProgress(0);
             setIsHeroFullWidth(false);

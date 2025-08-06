@@ -87,10 +87,13 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
 }) => {
     const galleryImages = images.length > 0 ? images : IMGS;
 
-    const [isScreenSizeSm, setIsScreenSizeSm] = useState<boolean>(
-        window.innerWidth <= 640
-    );
+    const [isScreenSizeSm, setIsScreenSizeSm] = useState<boolean>(false);
+
+
     useEffect(() => {
+        // Set initial screen size after component mounts (client-side only)
+        setIsScreenSizeSm(window.innerWidth <= 640);
+
         const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
@@ -173,55 +176,55 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({
     return (
         <Container isMobileFullScreen={true}>
             <div className="relative h-[600px] w-full  overflow-hidden">
-            <div className="flex h-full items-center  justify-center [perspective:1200px] [transform-style:preserve-3d]">
-                <motion.div
-                    drag="x"
-                    dragElastic={0}
-                    onDrag={handleDrag}
-                    onDragEnd={handleDragEnd}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    animate={controls}
-                    onUpdate={handleUpdate}
-                    style={{
-                        transform: transform,
-                        rotateY: rotation,
-                        width: cylinderWidth,
-                        transformStyle: "preserve-3d",
-                    }}
-                    className="flex min-h-[200px] cursor-grab items-center justify-center [transform-style:preserve-3d]"
-                >
-                    {galleryImages.map((item, i) => (
-                        <div
-                            key={i}
-                            className="group absolute flex h-fit items-center justify-center p-[1%] [backface-visibility:hidden]" // Added backface-visibility:hidden
-                            style={{
-                                width: `${faceWidth}px`,
-                                transform: `rotateY(${(360 / faceCount) * i}deg) translateZ(${radius}px)`,
-                            }}
-                        >
-                            {/* Card container - Optimized for 5 cards visibility */}
-                            <div className="relative h-[300px] w-[280px] sm:h-[280px] sm:w-[260px] rounded-[15px] overflow-hidden transition-transform duration-300 ease-out group-hover:scale-105">
-                                {/* Background image */}
-                                <img
-                                    src={item.url}
-                                    alt={item.title}
-                                    className="pointer-events-none h-full w-full object-cover"
-                                />
+                <div className="flex h-full items-center  justify-center [perspective:1200px] [transform-style:preserve-3d]">
+                    <motion.div
+                        drag="x"
+                        dragElastic={0}
+                        onDrag={handleDrag}
+                        onDragEnd={handleDragEnd}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        animate={controls}
+                        onUpdate={handleUpdate}
+                        style={{
+                            transform: transform,
+                            rotateY: rotation,
+                            width: cylinderWidth,
+                            transformStyle: "preserve-3d",
+                        }}
+                        className="flex min-h-[200px] cursor-grab items-center justify-center [transform-style:preserve-3d]"
+                    >
+                        {galleryImages.map((item, i) => (
+                            <div
+                                key={i}
+                                className="group absolute flex h-fit items-center justify-center p-[1%] [backface-visibility:hidden]" // Added backface-visibility:hidden
+                                style={{
+                                    width: `${faceWidth}px`,
+                                    transform: `rotateY(${(360 / faceCount) * i}deg) translateZ(${radius}px)`,
+                                }}
+                            >
+                                {/* Card container - Optimized for 5 cards visibility */}
+                                <div className="relative h-[300px] w-[280px] sm:h-[280px] sm:w-[260px] rounded-[15px] overflow-hidden transition-transform duration-300 ease-out group-hover:scale-105">
+                                    {/* Background image */}
+                                    <img
+                                        src={item.url}
+                                        alt={item.title}
+                                        className="pointer-events-none h-full w-full object-cover"
+                                    />
 
-                                {/* Content overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 pl-4 pt-3.5 pb-3 text-white z-50">
-                                    <h3 className="text-2xl font-light leading-6">{item.title}</h3>
+                                    {/* Content overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 pl-4 pt-3.5 pb-3 text-white z-50">
+                                        <h3 className="text-2xl font-light leading-6">{item.title}</h3>
+                                    </div>
+
+                                    {/* Bottom blur effect */}
+                                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[1px]" />
                                 </div>
-
-                                {/* Bottom blur effect */}
-                                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[1px]" />
                             </div>
-                        </div>
-                    ))}
-                </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
-        </div>
         </Container>
     );
 };
