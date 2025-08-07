@@ -1,4 +1,4 @@
-import { AboutBanner } from "@/Assets/About"
+import { AboutBanner } from "@/assets/About"
 
 
 import { Bodoni_Moda } from "next/font/google"

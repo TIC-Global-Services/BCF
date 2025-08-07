@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import Container from "../Reusable/Container";
-import { INfraImage } from "@/Assets/About";
+import { INfraImage } from "@/assets/About";
 
 const Infrastructure = () => {
   return (

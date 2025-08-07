@@ -326,7 +326,7 @@ const ScrollContentImages = () => {
   }, []);
 
   return (
-    <div style={{ height: '600vh' }}>
+    <div style={{ height: '600vh' }} className='overflow-x-hidden'>
       <Container>
         <div ref={containerRef} className="flex md:flex-row flex-col items-center justify-between min-h-screen">
 

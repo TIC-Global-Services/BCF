@@ -161,7 +161,6 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center justify-end mr-2">
         <HamburgerIcon
-        isHeroSection={isHeroSection}
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               isWhite={false}
