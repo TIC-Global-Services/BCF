@@ -1,8 +1,9 @@
-import Axis from "@/Components/Adaption/Axis";
-import CastingGrades from "@/Components/Adaption/CastingGrades";
-import Innovation from "@/Components/Adaption/Innovation";
-import ProductLine from "@/Components/Adaption/ProductLine";
-import ContentSectionComponent from "@/Components/Reusable/ContentSection";
+'use client'
+import Axis from "@/components/Adaption/Axis";
+import CastingGradesScroll from "@/components/Adaption/HorizontalScroll";
+import Innovation from "@/components/Adaption/Innovation";
+import ProductLine from "@/components/Adaption/ProductLine";
+import ContentSectionComponent from "@/components/Reusable/ContentSection";
 import React from "react";
 
 const page = () => {
@@ -21,8 +22,8 @@ const page = () => {
       <div className="pt-30">
         <Innovation />
       </div>
+      <CastingGradesScroll/>
       <ProductLine />
-      <CastingGrades />
     </div>
   );
 };
