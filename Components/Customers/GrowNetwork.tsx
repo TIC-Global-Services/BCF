@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GrowNetworkImage } from "@/assets/Customers/index";
+import { GrowNetworkImage } from "@/Assets/Customers/index";
 
 const GrowNetwork = () => {
   const ref = useRef(null);

@@ -5,7 +5,7 @@ import {
   ScalableLogo,
   StraightImage,
   TransparentImage,
-} from "@/assets/Customers/index";
+} from "@/Assets/Customers/index";
 
 const CustomerBento = () => {
   return (
