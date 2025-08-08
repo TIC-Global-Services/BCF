@@ -1,4 +1,4 @@
-export {default as Dots} from '@/assets/Products/dots.png'
+export {default as Dots} from '@/Assets/Products/dots.png'
 
 // Product page
 // Boiler
