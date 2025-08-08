@@ -1,6 +1,6 @@
-import AxisImage from "@/assets/Adaption/Axis/axisImage.png"
-import InnovationMatterImage from "@/assets/Adaption/innovationMattersImage.png"
-import JetImage from "@/assets/Adaption/ProductLine/JetNozzle.png"
+import AxisImage from "@/Assets/Adaption/Axis/axisImage.png"
+import InnovationMatterImage from "@/Assets/Adaption/innovationMattersImage.png"
+import JetImage from "@/Assets/Adaption/ProductLine/JetNozzle.png"
 
 export {
     AxisImage,
