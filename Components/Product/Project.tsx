@@ -10,6 +10,7 @@ const Project = () => {
   const isInView = useInView(ref, {
     once: false,
     margin: "-100px",
+    
   });
 
   return (

@@ -110,10 +110,6 @@ const CastingGradesScroll = () => {
                     ))}
                 </div>
             </div>
-
-
-            
-
         </div>
     );
 };
