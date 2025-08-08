@@ -1,4 +1,4 @@
-//  Expertise svg
+//  Expertise
 import  Icon1 from '@/Assets/Expertise/Expertise/Icon1.svg';
 import  Icon2 from '@/Assets/Expertise/Expertise/Icon2.svg';
 import  Icon3 from '@/Assets/Expertise/Expertise/Icon3.svg';
