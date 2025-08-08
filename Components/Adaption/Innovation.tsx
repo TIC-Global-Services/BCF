@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { InnovationMatterImage } from "@/assets/Adaption/index";
+import { InnovationMatterImage } from "@/Assets/Adaption/index";
 
 const Innovation = () => {
   const ref = useRef(null);

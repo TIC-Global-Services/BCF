@@ -4,10 +4,10 @@ import {
   BoilerImage,
   HydraImage,
   StraightImage,
-} from "@/assets/Customers/index";
+} from "@/Assets/Customers/index";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
-import { JetImage } from "@/assets/Adaption";
+import { JetImage } from "@/Assets/Adaption";
 
 const contents = [
   { image: BoilerImage, name: "Boiler Bolt" },

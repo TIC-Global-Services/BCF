@@ -1,9 +1,9 @@
 'use client'
-import Axis from "@/components/Adaption/Axis";
-import CastingGradesScroll from "@/components/Adaption/HorizontalScroll";
-import Innovation from "@/components/Adaption/Innovation";
-import ProductLine from "@/components/Adaption/ProductLine";
-import ContentSectionComponent from "@/components/Reusable/ContentSection";
+import Axis from "@/Components/Adaption/Axis";
+import CastingGradesScroll from "@/Components/Adaption/HorizontalScroll";
+import Innovation from "@/Components/Adaption/Innovation";
+import ProductLine from "@/Components/Adaption/ProductLine";
+import ContentSectionComponent from "@/Components/Reusable/ContentSection";
 import React from "react";
 
 const page = () => {

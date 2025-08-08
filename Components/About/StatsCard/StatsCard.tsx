@@ -1,5 +1,5 @@
-import { StatusCardRight } from '@/assets/About';
-import { LogoImg } from '@/assets/Common';
+import { StatusCardRight } from '@/Assets/About';
+import { LogoImg } from '@/Assets/Common';
 import Image from 'next/image';
 import React from 'react';
 import Container from '../../Reusable/Container';

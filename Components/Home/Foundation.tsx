@@ -9,7 +9,7 @@ import {
   ValueImage,
   VisionIcon,
   VisionImage,
-} from "@/assets/Home/index";
+} from "@/Assets/Home/index";
 import { LuArrowRight, LuArrowLeft } from "react-icons/lu";
 
 const contents = [

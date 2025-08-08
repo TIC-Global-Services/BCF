@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MediaKitImage } from "@/assets/Contact/index";
+import { MediaKitImage } from "@/Assets/Contact/index";
 
 const MediaKit = () => {
   const ref = useRef(null);

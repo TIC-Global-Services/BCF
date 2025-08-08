@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Bodoni_Moda, Inter_Tight } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "@/components/Reusable/Footer";
+import Footer from "@/Components/Reusable/Footer";
 import LenisProvider from "@/wrapper/LenisScrollWrapper";
-import NavBar from "@/components/Reusable/NavBar";
+import NavBar from "@/Components/Reusable/NavBar";
 import { HeroAnimationProvider } from "@/contexts/HeroAnimationContext";
-import ScrollToTop from "@/components/ui/ScrollToTop";
+import ScrollToTop from "@/Components/ui/ScrollToTop";
 
 // Bodoni Moda
 const bodoniModa = Bodoni_Moda({

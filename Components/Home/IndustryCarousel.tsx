@@ -9,7 +9,7 @@ import {
     PanInfo,
     ResolvedValues,
 } from "framer-motion";
-import Container from "@/components/Reusable/Container";
+import Container from "@/Components/Reusable/Container";
 
 const IMGS: { url: string; title: string; description: string }[] = [
     {

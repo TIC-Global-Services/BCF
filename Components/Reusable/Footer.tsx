@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FacebookLogo, InstagramLogo, LinkedinLogo } from "@/assets/Footer/Socials/index";
+import { FacebookLogo, InstagramLogo, LinkedinLogo } from "@/Assets/Footer/Socials/index";
 import { motion } from "framer-motion";
 import Container from "./Container";
 

@@ -1,10 +1,10 @@
 'use client'
-import HomePage from '@/components/About/Hero'
-import Infrastructure from '@/components/About/Infrastructure'
-import ScrollContent from '@/components/About/ScrollContent'
-import StatsCardsComponent from '@/components/About/StatsCard/StatsCard'
-import TeamCarousel from '@/components/About/TeamCarousel'
-import Appointment from '@/components/Reusable/Appointment'
+import HomePage from '@/Components/About/Hero'
+import Infrastructure from '@/Components/About/Infrastructure'
+import ScrollContent from '@/Components/About/ScrollContent'
+import StatsCardsComponent from '@/Components/About/StatsCard/StatsCard'
+import TeamCarousel from '@/Components/About/TeamCarousel'
+import Appointment from '@/Components/Reusable/Appointment'
 import React from 'react'
 
 const page = () => {
