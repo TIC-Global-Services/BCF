@@ -1,5 +1,5 @@
-import AppointmentMobileBGImage from "@/assets/Appointment/mobileBg.png"
-import AppointmentBGImage from "@/assets/Appointment/bg.png"
+import AppointmentMobileBGImage from "@/Assets/Appointment/mobileBg.png"
+import AppointmentBGImage from "@/Assets/Appointment/bg.png"
 
 export {
     AppointmentBGImage,

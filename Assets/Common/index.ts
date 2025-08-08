@@ -1,4 +1,4 @@
-import LogoImg from "@/assets/Common/LogoImg.png";
+import LogoImg from "@/Assets/Common/LogoImg.png";
 
 export {
     LogoImg

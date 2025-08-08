@@ -1,4 +1,4 @@
-import MediaKitImage from "@/assets/Contact/mediaKit.png"
+import MediaKitImage from "@/Assets/Contact/mediaKit.png"
 
 export {
     MediaKitImage
