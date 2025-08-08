@@ -1,14 +1,14 @@
 //  Expertise
-import  Icon1 from '@/Assets/Expertise/Expertise/Icon1.svg';
-import  Icon2 from '@/Assets/Expertise/Expertise/Icon2.svg';
-import  Icon3 from '@/Assets/Expertise/Expertise/Icon3.svg';
-import  Icon4 from '@/Assets/Expertise/Expertise/Icon4.svg';
-import  Icon5 from '@/Assets/Expertise/Expertise/Icon5.svg';
-import  IconWhite1 from '@/Assets/Expertise/Expertise/IconWhite1.svg';
-import  IconWhite2 from '@/Assets/Expertise/Expertise/IconWhite2.svg';
-import  IconWhite3 from '@/Assets/Expertise/Expertise/IconWhite3.svg';
-import  IconWhite4 from '@/Assets/Expertise/Expertise/IconWhite4.svg';
-import  IconWhite5 from '@/Assets/Expertise/Expertise/IconWhite5.svg';
+import  Icon1 from '@/Assets/Expertise/Exp/Icon1.svg';
+import  Icon2 from '@/Assets/Expertise/Exp/Icon2.svg';
+import  Icon3 from '@/Assets/Expertise/Exp/Icon3.svg';
+import  Icon4 from '@/Assets/Expertise/Exp/Icon4.svg';
+import  Icon5 from '@/Assets/Expertise/Exp/Icon5.svg';
+import  IconWhite1 from '@/Assets/Expertise/Exp/IconWhite1.svg';
+import  IconWhite2 from '@/Assets/Expertise/Exp/IconWhite2.svg';
+import  IconWhite3 from '@/Assets/Expertise/Exp/IconWhite3.svg';
+import  IconWhite4 from '@/Assets/Expertise/Exp/IconWhite4.svg';
+import  IconWhite5 from '@/Assets/Expertise/Exp/IconWhite5.svg';
 
 // Experience
 import LeftWall from "@/assets/Expertise/Experience/leftWall.png"
