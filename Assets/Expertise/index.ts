@@ -11,11 +11,11 @@ import  IconWhite4 from '@/Assets/Expertise/Exp/IconWhite4.svg';
 import  IconWhite5 from '@/Assets/Expertise/Exp/IconWhite5.svg';
 
 // Experience
-import LeftWall from "@/assets/Expertise/Experience/leftWall.png"
-import RightWall from "@/assets/Expertise/Experience/rightWall.png"
+import LeftWall from "@/Assets/Expertise/Experience/leftWall.png"
+import RightWall from "@/Assets/Expertise/Experience/rightWall.png"
 
 // Industry
-import IndustryImage from "@/assets/Expertise/Industry/industry.png"
+import IndustryImage from "@/Assets/Expertise/Industry/industry.png"
 
 //Hero 
 import ExpBanner from "@/Assets/Expertise/ExpertiseBanner.png"
