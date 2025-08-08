@@ -17,8 +17,13 @@ import RightWall from "@/assets/Expertise/Experience/rightWall.png"
 // Industry
 import IndustryImage from "@/assets/Expertise/Industry/industry.png"
 
+//Hero 
+import ExpBanner from "@/Assets/Expertise/ExpertiseBanner.png"
 
 export {
+    // Hero
+    ExpBanner,
+
     // Industry
     IndustryImage,
 

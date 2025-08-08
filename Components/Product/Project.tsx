@@ -3,13 +3,14 @@ import React from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Dots } from "@/assets/Products/index";
+import { Dots } from "@/Assets/Products/index";
 
 const Project = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: false,
     margin: "-100px",
+    
   });
 
   return (
