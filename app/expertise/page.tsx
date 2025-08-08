@@ -5,7 +5,8 @@ import Industry from "@/Components/Expertise/Industry";
 import Appointment from "@/Components/Reusable/Appointment";
 import Hero from "@/Components/Reusable/HeroContainer";
 import React from "react";
-export const heroContent = {
+
+const heroContent = {
   title: ['Expertise'],
   buttonText: 'Contact Us',
   backgroundImage: ExpBanner.src,
